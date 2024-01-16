@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   SectionList,
+  View,
   Text,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -32,16 +33,15 @@ function Home(props: any): React.JSX.Element {
               // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 flex: 1,
-                height: 30,
-                flexDirection: 'row',
-                justifyContent: 'flex-end',
-                alignItems: 'center',
+                height: 40,
               }}>
-              <Text style={{textAlign: 'right'}}>{item.title}</Text>
-              <TouchableOpacity
-                onPress={() => dispatch(removeAlbum(item.id, item.userId))}>
-                <Text style={styles.removeButton}>-</Text>
-              </TouchableOpacity>
+              <View style={styles.itemContainer}>
+                <Text style={styles.itemText}>{item.title}</Text>
+                <TouchableOpacity
+                  onPress={() => dispatch(removeAlbum(item.id, item.userId))}>
+                  <Text style={styles.removeButton}>-</Text>
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
           )}
           renderSectionHeader={({section}) => (
@@ -50,7 +50,7 @@ function Home(props: any): React.JSX.Element {
               onPress={() => {
                 props.navigation.push('Albums', {UserAlbums: section.data});
               }}>
-              <Text style={{fontWeight: 'bold'}}>{section.name}</Text>
+              <Text style={styles.sectionNameText}>{section.name}</Text>
             </TouchableOpacity>
           )}
           keyExtractor={(item, index) => item.id + index}
@@ -82,6 +82,19 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontWeight: 'bold',
+  },
+  sectionNameText: {
+    fontWeight: 'bold',
+  },
+  itemContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  itemText: {
+    width: 300,
+    textAlign: 'right',
   },
 });
 export default Home;

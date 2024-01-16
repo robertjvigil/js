@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -28,6 +28,17 @@ function Albums(_props: RootStackParamList['Albums']): React.JSX.Element {
     dispatch(getAllAlbums());
   }, []);
 
+  useLayoutEffect(() => {
+    _props.navigation.setOptions({
+      headerTitle: headerTitle,
+      headerRight: () => (
+        <TouchableOpacity onPress={() => setHeader(!showAll)}>
+          <Icon name="star" size={30} color={showAll ? 'blue' : 'black'} />
+        </TouchableOpacity>
+      ),
+    });
+  });
+  /*
   _props.navigation.setOptions({
     // eslint-disable-next-line react/no-unstable-nested-components
     headerRight: () => (
@@ -37,6 +48,7 @@ function Albums(_props: RootStackParamList['Albums']): React.JSX.Element {
     ),
     headerTitle: headerTitle,
   });
+  */
 
   function setHeader(showall: boolean) {
     if (showall) {

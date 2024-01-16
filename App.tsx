@@ -24,7 +24,7 @@ function App(): React.JSX.Element {
             name="Home"
             component={Home}
             options={{
-              headerTitle: 'Home',
+              headerTitle: 'Users',
             }}
           />
           <Stack.Screen

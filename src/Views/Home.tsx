@@ -56,9 +56,6 @@ function Home(props: any): React.JSX.Element {
           keyExtractor={(item, index) => item.id + index}
         />
       )}
-      <TouchableOpacity onPress={() => dispatch(removeAlbum(3, 1))}>
-        <Text>Remove</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }
